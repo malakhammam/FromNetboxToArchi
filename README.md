@@ -17,14 +17,14 @@ This Python script interacts with the NetBox API to fetch data of various specif
    - The CSV file path and data are provided as parameters.
 
 4. **Function: createArchiProperties_csv_file**
-   - Combines data from the filtered CSV file with an existing properties CSV file related to NodeDescription.
-   - Concatenates and saves the result to a new CSV file, updating properties for Archi.
+   - Concatenates data from Xfiltered.CSV file with Anchor_NodeDescription_properties.CSV file while making sure the new Xproperties.csv file being created has the structure Archi expects when it gets imported.
 
 5. **Function: CreateArchiElements_csv_file**
    - Creates a new elements CSV file based on the filtered CSV data.
    - Generates a row for each instance.
    - The headers consist of "ID","Type","Name","Documentation","Specialization".
-   - Uses the 'Display' column from the filtered CSV as the 'Name' in the elements.CSV being created for Archi.
+   - parameter 'display' specifies which column from Xfiltered.CSV assigns the displayed names of the instances in Archi.
+  
 
 6. **Main Block:**
    - Collects NetBox URL and API token interactively from the user.
@@ -35,6 +35,7 @@ This Python script interacts with the NetBox API to fetch data of various specif
      - Creates for Archi properties.CSV using `createArchiProperties_csv_file`.
      - Creates for Archi elements.CSV using `CreateArchiElements_csv_file`.
 
-7. **Notes:**
+7. **IMPORTANT Notes:**
    - It interacts with the NetBox API, so you need to replace the user input section with the actual NetBox URL and API token.
    - The CSV file paths, desired fields, and display columns for each endpoint are configurable.
+   - transferAll.py only works when theres an 'Anchor_NodeDescription_properties.CSV' file in your project folder. See the example file in the main brach and replace the the first column 'ID' with an exisiting ID of any of your exisiting nodes in your Archi model. You can retrieve an ID by exporting the model in Archi you want to transfer the data to, be it one you've opened from a template or one you've created yourself.  
